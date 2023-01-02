@@ -1,6 +1,6 @@
 import * as express from 'express';
 import routes from './routes';
-import { sequelize } from "./models";
+import sequelize from "./models/index";
 
 const app = express();
 app.use(express.json());

@@ -1,34 +1,40 @@
 import { Model, DataTypes } from 'sequelize';
-import { sequelize } from './index'
+import sequelize from './index'
 
-class Post extends Model {
-    public id!: number;
-    public title!: string;
-    public content!: string;
-
-    public readonly createdAt!: Date;
-    public readonly updatedAt!: Date;
+interface PostsAttributes {
+    postId:number;
+    title: string;
+    content: string;
 }
 
-Post.init(
+export class Posts extends Model<PostsAttributes> {
+  public readonly postId!: number;
+  public title!: string;
+  public content!: string;
+
+  public readonly createdAt!: Date;
+  public readonly updatedAt!: Date;
+}
+
+Posts.init(
     {
-        id: {
-            type: DataTypes.INTEGER,
-            autoIncrement: true,
-            primaryKey: true,
-        },
-        title: {
-            type: DataTypes.STRING,
-            allowNull: false,
-        },
-        content: {
-            type: DataTypes.TEXT,
-            allowNull: false,
-        },
+    postId: {
+        type: DataTypes.INTEGER,
+        autoIncrement: true,
+        primaryKey: true,
+      },
+      title: {
+        type: DataTypes.STRING,
+        allowNull: false,
+      },
+      content: {
+        type: DataTypes.TEXT,
+        allowNull: false,
+      },
     },
     {
-        sequelize,
-        modelName: 'Post',
-        timestamps : true,
+      sequelize,
+      modelName: 'Posts',
+      timestamps : true,
     }
 );

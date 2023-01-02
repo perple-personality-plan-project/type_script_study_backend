@@ -1,9 +1,7 @@
 import {Sequelize} from "sequelize";
-import {config} from "../config/config";
+import config from "../config/config";
 
-console.log(config)
-
-export const sequelize = new Sequelize(
+const sequelize = new Sequelize(
     config.development.database,
     config.development.username,
     config.development.password,
@@ -11,5 +9,6 @@ export const sequelize = new Sequelize(
       host: config.development.host,
       dialect: 'mysql'
     }
-
 )
+
+export default sequelize;
