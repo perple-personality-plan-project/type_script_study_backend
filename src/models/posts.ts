@@ -1,7 +1,7 @@
-import { Model, DataTypes } from 'sequelize';
-import { sequelize } from './index'
+import { Model, DataTypes } from "sequelize";
+import { sequelize } from "./index";
 
-class Post extends Model {
+export class Post extends Model {
     public id!: number;
     public title!: string;
     public content!: string;
@@ -28,7 +28,7 @@ Post.init(
     },
     {
         sequelize,
-        modelName: 'Post',
-        timestamps : true,
+        modelName: "Post",
+        timestamps: true,
     }
 );
