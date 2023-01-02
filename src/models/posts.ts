@@ -1,6 +1,6 @@
 import { Model, DataTypes } from "sequelize";
 import { sequelize } from "./index";
-
+//
 export class Post extends Model {
     public id!: number;
     public title!: string;

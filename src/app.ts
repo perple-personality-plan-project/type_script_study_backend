@@ -2,7 +2,7 @@ import * as express from "express";
 import routes from "./routes";
 import { sequelize } from "./models";
 import { Post } from "./models/posts";
-
+//
 const app = express();
 app.use(express.json());
 
