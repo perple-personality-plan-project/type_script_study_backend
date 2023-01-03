@@ -1,11 +1,11 @@
 import * as express from "express";
 import routes from "./routes";
 import sequelize from "./models/index";
-import cors from 'cors';
+import * as cors from 'cors';
 
 const app = express();
 app.use(express.json());
-app.use(cors({ exposedHeaders: ['Authorization'] }));
+app.use(cors());
 
 app.use("/api", routes);
 
