@@ -1,34 +1,35 @@
-import { Model, DataTypes } from "sequelize";
-import { sequelize } from "./index";
-//
-export class Post extends Model {
-    public id!: number;
-    public title!: string;
-    public content!: string;
+import { Model, InferAttributes, InferCreationAttributes, CreationOptional,DataTypes } from 'sequelize';
+import sequelize from './index'
 
-    public readonly createdAt!: Date;
-    public readonly updatedAt!: Date;
+
+class Posts extends Model<InferAttributes<Posts>,InferCreationAttributes<Posts>> {
+    declare postId: CreationOptional<number>;
+    declare title: string;
+    declare content: string;
+    declare createdAt: CreationOptional<Date>;
+    declare updatedAt: CreationOptional<Date>;
 }
 
-Post.init(
-    {
-        id: {
-            type: DataTypes.INTEGER,
-            autoIncrement: true,
-            primaryKey: true,
-        },
-        title: {
-            type: DataTypes.STRING,
-            allowNull: false,
-        },
-        content: {
-            type: DataTypes.TEXT,
-            allowNull: false,
-        },
+Posts.init({
+    postId:{
+        type: DataTypes.INTEGER,
+        primaryKey: true,
+        autoIncrement: true,
     },
-    {
-        sequelize,
-        modelName: "Post",
-        timestamps: true,
-    }
-);
+    title: {
+        type: DataTypes.STRING,
+        allowNull: false,
+    },
+    content:{
+        type: DataTypes.STRING,
+        allowNull: false,
+    },
+    createdAt: DataTypes.DATE,
+    updatedAt: DataTypes.DATE,
+
+},{
+    tableName: 'Posts',
+    sequelize
+});
+
+export default Posts;

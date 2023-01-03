@@ -1,24 +1,17 @@
 import * as express from "express";
 import routes from "./routes";
-import { sequelize } from "./models";
-import { Post } from "./models/posts";
-//
+import sequelize from "./models/index";
+
+
 const app = express();
 app.use(express.json());
 
 app.use("/api", routes);
 
-const create_table = async () => {
-    await Post.sync({ force: true })
-        .then(() => {
-            console.log("create table");
-        })
-        .catch((err: Error) => {
-            console.log(err);
-        });
-};
+// app.use((error: Error, req: Request, res: Response, next: NextFunction) => {
+//     res.status(400).json({ errorMessage: error.message });
+// });
 
-create_table();
 
 app.listen(process.env.PORT, async () => {
     console.log(`server is running on ${3000}`);
