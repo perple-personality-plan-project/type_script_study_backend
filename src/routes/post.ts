@@ -1,15 +1,17 @@
-import {Router,Request, Response } from 'express';
-import Posts from '../models/posts'
+import { Router } from "express";
+import TodoController from "../controller/todo.controller";
+import TodoService from "../service/todo.service";
+import TodoRepository from "../repository/todo.repository";
 
 const router = Router();
 
-router.post('/',async (req:Request, res:Response) => {
-    try {
-        const {title,content} = req.body;
-        await Posts.create({title, content});
-    }catch (error){
-        console.log(error);
-    }
-});
+const todoRepository = new TodoRepository();
+const todoService = new TodoService(todoRepository);
+const todoController = new TodoController(todoService);
+
+router.get("/", todoController.findAllTodos);
+router.post("/", todoController.createdTodo);
+router.put("/:postId", todoController.updatedTodo);
+router.delete("/:postId", todoController.deletedTodo);
 
 export default router;
